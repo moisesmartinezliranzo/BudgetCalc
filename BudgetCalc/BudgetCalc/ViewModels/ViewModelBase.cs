@@ -12,6 +12,8 @@ namespace BudgetCalc.ViewModels
         protected INavigationService NavigationService { get; private set; }
 
         private string _title;
+        private INavigationSevice navigationSevice;
+
         public string Title
         {
             get { return _title; }
@@ -21,6 +23,11 @@ namespace BudgetCalc.ViewModels
         public ViewModelBase(INavigationService navigationService)
         {
             NavigationService = navigationService;
+        }
+
+        public ViewModelBase(INavigationSevice navigationSevice)
+        {
+            this.navigationSevice = navigationSevice;
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)

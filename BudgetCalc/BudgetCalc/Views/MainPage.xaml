@@ -4,8 +4,72 @@
              x:Class="BudgetCalc.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding AddCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
 
+
+    <StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <ListView 
+                        IsVisible="True"
+                        ItemsSource="{Binding Transaction}"
+                        CachingStrategy="RecycleElement"
+                        RowHeight="60">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+
+                                    <Grid Padding="17, 10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" TranslationY="2" />
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding TransactionType}" TranslationY="-5" />
+                                        <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center" Text="{Binding Amount}" />
+                                    </Grid>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout Padding="17, 15" BackgroundColor="#3F51B5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Column="0">
+                    <Label Text="Spending" TextColor="White"/>
+                    <Label Text="{Binding Spending}" TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" >
+                    <Label Text="Income" TextColor="White"/>
+                    <Label Text="{Binding Income}" TextColor="White"/>
+                </StackLayout >
+
+                <StackLayout Grid.Column="2" >
+                    <Label Text="Balance" TextColor="White"/>
+                    <Label Text="{Binding Balance}" TextColor="White"/>
+                </StackLayout >
+            </Grid>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
